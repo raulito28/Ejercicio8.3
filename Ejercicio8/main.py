@@ -1,14 +1,6 @@
-import persistencia_json as
-import json
-lista_coches = json.load(open("Coches.txt", "r"))
-json.dump(json.dumps(lista_coches), open("Coches.txt", "w"))
+import persistencia_json as RB
 lista_coches = []
-print("\nLista coches:\n", lista_coches)
-lista_coches = json.loads(json.load(open("Coches.txt", "r")))
-print("\nLista coches:\n", lista_coches)
-
-
-lista_coches = json.load(open("Coches.txt", "r"))
+Nombre_documento = input("Nombre del documento: ")
 while True:
     coche = {}
     marca = input("Marca de coche: ")
@@ -18,7 +10,12 @@ while True:
     coche["Modelo"] = input("Modelo: ")
     coche["Combustible"] = input("Combustible: ")
     coche["Cilindrada"] = input("Cilindrada: ")
+
     lista_coches.append(coche)
 
-for coche in lista_coches:
-    print("Coche: ", coche)
+RB.store(lista_coches, Nombre_documento)
+lista_coches = []
+print("Lista coches: \n", lista_coches)
+
+lista_coches = RB.retrieve(Nombre_documento)
+print("Lista coches: \n", lista_coches)
